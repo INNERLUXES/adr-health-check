@@ -1,0 +1,26 @@
+adr-health-check: examples/healthy
+folder: examples/healthy (5 records, 1 other file, 0 subfolders, 0 symbolic links)
+config: examples/config.json (Order platform review rules): layouts Nygard (3 sections, status required), MADR (8 sections), detected per record; statuses proposed, accepted, rejected, deprecated, superseded, draft; file names NNNN-title-with-dashes.md
+rules: missing-title (error); unknown-layout (error); missing-section (required error, recommended notice); empty-section (warning); placeholder (warning); missing-status (error); unknown-status (error); stale-proposed (warning); superseded-link (error); broken-link (error); duplicate-number (error); duplicate-title (error); numbering-gap (notice); file-name (warning)
+records: 5: 5 MADR; 1 proposed, 3 accepted, 1 superseded
+links: 3 relative links to the folder checked, 0 broken; 0 leaving the folder not followed; 0 web addresses not fetched
+findings: 0; fail level warning
+
+Findings (0)
+
+  none
+
+Records (5)
+
+  number  file                                                  layout  status      sections missing or empty
+  1       0001-record-decisions-in-madr.md                      madr    accepted    none
+  2       0002-store-shipments-in-postgresql.md                 madr    accepted    none
+  3       0003-publish-tracking-events-through-a-queue.md       madr    superseded  none
+  4       0004-publish-tracking-events-from-an-outbox-table.md  madr    accepted    none
+  5       0005-serve-label-images-from-object-storage.md        madr    proposed    none
+
+note: not read as records: README.md
+
+This report checks the structure of the records, their status, their numbers, their names and their links only. It does not judge whether a decision is right.
+
+RESULT: PASS - no finding at or above warning

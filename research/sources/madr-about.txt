@@ -1,0 +1,95 @@
+Source: https://adr.github.io/madr/
+
+About MADR, the home page of the Markdown Architectural Decision Records project, read from the HTML page and written
+out as text. The site menu and the list of contents are left out. The News section, which is a list of dated
+releases and articles, and the Full template section, which renders the template saved in madr-template.txt, are cut
+and marked [...]. The phonetic spelling after the name is marked [...] too. Typographic quotes, apostrophes, dashes
+and the ellipsis are written as their nearest ASCII characters.
+
+Markdown Architectural Decision Records
+"Markdown Architectural Decision Records" (MADR) [...] - decisions that matter [...].
+
+An Architectural Decision (AD) is a justified software design choice that addresses a functional or non-functional requirement of architectural significance. This decision is documented in an Architectural Decision Record (ADR), which details a single AD and its underlying rationale. To capture these records in a lean way, the Markdown Architectural Decision Records (MADRs) have been invented: MADR is a streamlined template for recording architectural significant decisions in a structured manner.
+Scientific publication: Markdown Architectural Decision Records: Format and Tool Support.
+
+[...]
+
+Overview
+An Architectural Decision (AD) is a software design choice that addresses a functional or non-functional requirement that is architecturally significant. This might, for instance, be a technology choice (e.g., Java vs. JavaScript), a choice of the IDE (e.g., IntelliJ vs. Eclipse IDE), a choice between a library (e.g., SLF4J vs java.util.logging), or a decision on features (e.g., infinite undo vs. limited undo). Do not take the term "architecture" too seriously or interpret it too strongly. As the examples illustrate, any decisions that might have an impact on the architecture somehow are architectural decisions.
+It should be as easy as possible to a) write down the decisions and b) to version the decisions.
+There are debates about what is an architecturally-significant decision and which decisions are not architecturally significant. Since we believe that any (important) decision should be captured in a structured way, we offer the MADR template to capture any decision.
+This repository offers a solution to record any decisions. It provides files to document any decisions using Markdown and Architectural Decision Records.
+
+Example
+# Use Plain JUnit5 for advanced test assertions
+
+## Context and Problem Statement
+
+How to write readable test assertions?
+How to write readable test assertions for advanced tests?
+
+## Considered Options
+
+* Plain JUnit5
+* Hamcrest
+* AssertJ
+
+## Decision Outcome
+
+Chosen option: "Plain JUnit5", because it is a standard framework and the features of the other frameworks do not outweigh the drawbrack of adding a new dependency.
+
+For more examples see examples. For the MADR project itself, all ADRs are rendered at decisions/. Their source can be found at https://github.com/adr/madr/tree/develop/docs/decisions. The latest release of the full template (with placeholders and some guidance how to use) can be found at the releases page. By clicking on the number at the tag symbol, you browse the repository at the state of the release. For the brave, the version under development is available at https://github.com/adr/madr/blob/develop/template/adr-template.md. There also is a CHANGELOG listing the changes between the last released version and the currently developed version.
+
+Applying MADR to your project
+
+Initialization
+Create folder docs/decisions in your project. Copy all files in folder template from the MADR project to the folder docs/decisions in your project.
+Using npm, this can be done using the following command:
+npm install madr && mkdir -p docs/decisions && cp node_modules/madr/template/* docs/decisions/
+
+Create a new ADR
+
+Manual approach
+
+- Copy docs/decisions/adr-template.md to docs/decisions/NNNN-title-with-dashes.md, where NNNN indicates the next number in sequence.
+
+- Edit NNNN-title-with-dashes.md.
+
+Note you can also use other patterns for the directory format. As a consequence, some existing tooling might not be applicable.
+The filenames are following the pattern NNNN-title-with-dashes.md (ADR-0005), where
+
+- NNNN is a consecutive number and we assume that there won't be more than 9,999 ADRs in one repository.
+
+- The title is stored using dashes and lowercase, because [adr-tools] also does that.
+
+- The suffix is .md, because it is a Markdown file.
+
+Decisions are placed in the subfolder decisions/ to keep them close to the documentation but also separate the decisions from other documentation.
+
+Automatic approach
+There is currently no tooling supporting MADR 3.0.0.
+
+Lint ADRs
+ADRs are written using Markdown. Since Markdown allows many styles, formatting can be inconsistent. To notify about inconsistencies, markdownlint has been invented. There is an initial configuration for it at template/.markdownlint. You can use that configuration in a GitHub workflow. See .github/workflows/lint.yaml for an example.
+
+Using MADR in large projects and product developments
+Large projects may accumulate hundreds of decision records over time, and finding them might be hard. MADR does not enforce any repository or directory organization structure. Some proposals from the community are presented in the following.
+
+Usage of categories
+MADR logs may be categorized ADRs by defining subdirectories and put the ADRs into these folders.
+An exemplary folder structure might follow the architectural structure of the system under construction:
+.
+`-- decisions
+|-- backend
+|   |-- 0001-use-quarkus.md
+`-- ui
+`-- 0001-use-vuejs.md
+
+This approach makes all categories explicit because the subdirectory/folder names define the categories. As a consequence, numbers of ADRs are no longer unique throughout the repository, but locally within a category only. Ideally, the ADR categorization the same organizing principles as other artifacts such as the code; using architectural structure breakdown is just one option and functional decomposition would be an additional one. This comes down to a meta-decision to be made rather early on.
+Note that alternatives to categorization via subfolders are discussed at ADR-0010.
+
+[...]
+
+License
+This work is dual-licensed under MIT and CC0. You can choose between one of them if you use this work.
+SPDX-License-Identifier: MIT OR CC0-1.0

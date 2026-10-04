@@ -1,0 +1,29 @@
+Source: https://adr.github.io/
+
+The home page of the adr organization on GitHub Pages, Architectural Decision Records, read from the HTML page and
+written out as text: the sections Motivation and Definitions and Background Information. The section ADRs in the
+Media, a dated list of articles, is cut and marked [...], and so are the years inside three items of the list of
+background information. Typographic quotes, apostrophes and dashes are written as their nearest ASCII characters.
+
+Motivation and Definitions
+An Architectural Decision (AD) is a justified design choice that addresses a functional or non-functional requirement that is architecturally significant. An Architecturally Significant Requirement (ASR) is a requirement that has a measurable effect on the architecture and quality of a software and/or hardware system. An Architectural Decision Record (ADR) captures a single AD and its rationale; Put it simply, ADR can help you understand the reasons for a chosen architectural decision, along with its trade-offs and consequences. The collection of ADRs created and maintained in a project constitute its decision log. All these are within the topic of Architectural Knowledge Management (AKM), but ADR usage can be extended to design and other decisions ("any decision record").
+The aim of the GitHub adr organization is to:
+
+- Motivate the need for and benefits of AD capturing and establish a common vocabulary.
+- Strengthen the tooling around ADRs, in support of agile practices as well as iterative and incremental engineering processes.
+- Provide pointers to public knowledge in the context of AKM and ADRs.
+
+[...]
+
+Background Information
+The work in the adr organization is based on the guidelines and principles in Sustainable Architectural Decisions by Zdun et al., for instance the Y-statement format suggested in that article.
+More general background information and ADR guidance is available:
+
+- A comparison of seven templates can be found in "Architectural Decision Guidance Across Projects -- Problem Space Modeling, Decision Backlog Management and Cloud Computing Knowledge", a WICSA [...] conference paper.
+- Architectural Decisions -- The Making Of provides a history on architecture decision recording since [...], as well as examples and guidance for providing decision rationale.
+- Documenting Architecture Decisions is the blog post [...] by Michael Nygard that popularized the concept.
+- Architectural Decision Records (ADR): Open & Transparent Decision History is a practice in the Open Practice Library.
+- An AWS Prescriptive Guidance recommends using architectural decision records to streamline technical decision-making for a software development project.
+- Architecture Decision Records in Action by Michael Keeling (IBM Watson Group) and Joe Runde (IBM) [YouTube] is a presentation that includes empirical numbers.
+- ADRs and Architecture Stories is part of a video series by Mark Richards explaining ADRs, starting from Nygard's template.
+- Additional pointers and resources can be found on the web page Architectural Knowledge Management (AKM).

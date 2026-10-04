@@ -1,0 +1,194 @@
+{
+  "name": "default layouts",
+  "layout": "detect",
+  "useDefaultLayouts": false,
+  "layouts": {
+    "nygard": {
+      "title": "Nygard",
+      "requireStatus": true,
+      "sections": {
+        "context": {
+          "title": "Context",
+          "aliases": [
+            "Context"
+          ],
+          "level": "required"
+        },
+        "decision": {
+          "title": "Decision",
+          "aliases": [
+            "Decision"
+          ],
+          "level": "required"
+        },
+        "consequences": {
+          "title": "Consequences",
+          "aliases": [
+            "Consequences"
+          ],
+          "level": "required"
+        }
+      }
+    },
+    "madr": {
+      "title": "MADR",
+      "requireStatus": false,
+      "sections": {
+        "contextAndProblem": {
+          "title": "Context and Problem Statement",
+          "aliases": [
+            "Context and Problem Statement"
+          ],
+          "level": "required"
+        },
+        "decisionDrivers": {
+          "title": "Decision Drivers",
+          "aliases": [
+            "Decision Drivers"
+          ],
+          "level": "optional"
+        },
+        "consideredOptions": {
+          "title": "Considered Options",
+          "aliases": [
+            "Considered Options"
+          ],
+          "level": "required"
+        },
+        "decisionOutcome": {
+          "title": "Decision Outcome",
+          "aliases": [
+            "Decision Outcome"
+          ],
+          "level": "required"
+        },
+        "consequences": {
+          "title": "Consequences",
+          "aliases": [
+            "Consequences"
+          ],
+          "level": "recommended"
+        },
+        "confirmation": {
+          "title": "Confirmation",
+          "aliases": [
+            "Confirmation"
+          ],
+          "level": "optional"
+        },
+        "prosAndCons": {
+          "title": "Pros and Cons of the Options",
+          "aliases": [
+            "Pros and Cons of the Options"
+          ],
+          "level": "optional"
+        },
+        "moreInformation": {
+          "title": "More Information",
+          "aliases": [
+            "More Information"
+          ],
+          "level": "optional"
+        }
+      }
+    }
+  },
+  "statusHeadings": {
+    "replace": [
+      "Status"
+    ]
+  },
+  "statuses": {
+    "replace": [
+      "proposed",
+      "accepted",
+      "rejected",
+      "deprecated",
+      "superseded"
+    ]
+  },
+  "placeholders": {
+    "replace": [
+      "TBD",
+      "TBA",
+      "TODO",
+      "FIXME",
+      "to be decided",
+      "to be determined",
+      "to be defined",
+      "to be confirmed",
+      "to be written",
+      "lorem ipsum"
+    ]
+  },
+  "ignoreFiles": {
+    "replace": [
+      "README.md",
+      "index.md",
+      "template.md",
+      "adr-template.md"
+    ]
+  },
+  "templateBraces": true,
+  "fileName": {
+    "prefix": "",
+    "digits": 4,
+    "separator": "-",
+    "lowercase": true,
+    "extension": ".md"
+  },
+  "rules": {
+    "missingTitle": {
+      "level": "error"
+    },
+    "unknownLayout": {
+      "level": "error"
+    },
+    "missingSection": {
+      "required": "error",
+      "recommended": "notice"
+    },
+    "emptySection": {
+      "level": "warning"
+    },
+    "placeholder": {
+      "level": "warning"
+    },
+    "missingStatus": {
+      "level": "error"
+    },
+    "unknownStatus": {
+      "level": "error"
+    },
+    "staleProposed": {
+      "level": "warning",
+      "after": 3,
+      "pending": "proposed",
+      "decided": [
+        "accepted"
+      ]
+    },
+    "supersededLink": {
+      "level": "error",
+      "statuses": [
+        "superseded"
+      ]
+    },
+    "brokenLink": {
+      "level": "error"
+    },
+    "duplicateNumber": {
+      "level": "error"
+    },
+    "duplicateTitle": {
+      "level": "warning"
+    },
+    "numberingGap": {
+      "level": "notice"
+    },
+    "fileName": {
+      "level": "warning"
+    }
+  },
+  "failOn": "warning"
+}

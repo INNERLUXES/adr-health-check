@@ -1,0 +1,9 @@
+{
+  "name": "Order platform review rules",
+  "statuses": { "add": ["draft"] },
+  "rules": {
+    "staleProposed": { "after": 3, "decided": ["accepted", "rejected"] },
+    "duplicateTitle": { "level": "error" }
+  },
+  "failOn": "warning"
+}

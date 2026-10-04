@@ -1,0 +1,923 @@
+{
+  "tool": "adr-health-check",
+  "version": "1.0.0",
+  "folder": {
+    "path": "examples/troubled",
+    "records": 9,
+    "otherFiles": 1,
+    "subfolders": 0,
+    "symbolicLinks": 0
+  },
+  "config": {
+    "file": "examples/config.json",
+    "name": "Order platform review rules",
+    "failOn": "warning",
+    "layout": "detect",
+    "layouts": [
+      {
+        "id": "nygard",
+        "title": "Nygard",
+        "requireStatus": true,
+        "sections": 3
+      },
+      {
+        "id": "madr",
+        "title": "MADR",
+        "requireStatus": false,
+        "sections": 8
+      }
+    ],
+    "statuses": [
+      "proposed",
+      "accepted",
+      "rejected",
+      "deprecated",
+      "superseded",
+      "draft"
+    ],
+    "placeholders": 10,
+    "templateBraces": true,
+    "fileName": "NNNN-title-with-dashes.md",
+    "rules": [
+      {
+        "id": "missing-title",
+        "level": "error",
+        "rule": "a record whose first heading is not a level 1 heading and whose front matter has no title"
+      },
+      {
+        "id": "unknown-layout",
+        "level": "error",
+        "rule": "a record in which no heading matches a section of any layout (Nygard, MADR)"
+      },
+      {
+        "id": "missing-section",
+        "required": "error",
+        "recommended": "notice",
+        "rule": "a section of the layout of a record at level required (finding at error) or recommended (finding at notice) for which no heading matches one of its aliases"
+      },
+      {
+        "id": "empty-section",
+        "level": "warning",
+        "rule": "a heading other than the title under which, down to the next heading at its level or above, there is no paragraph, list, table, code block or block quote, or where every piece of text is nothing but placeholders"
+      },
+      {
+        "id": "placeholder",
+        "level": "warning",
+        "rule": "a placeholder of the list (10 phrases), or text in curly braces as the MADR template writes the parts to fill in, in a heading or in text of any section, outside code, quotes and links"
+      },
+      {
+        "id": "missing-status",
+        "level": "error",
+        "rule": "a record of a layout that needs a status (Nygard) with no status in its front matter, in a section headed Status, or on a \"Status:\" line before its first section"
+      },
+      {
+        "id": "unknown-status",
+        "level": "error",
+        "rule": "a status whose first word is not one of proposed, accepted, rejected, deprecated, superseded and draft, or a status given more than once in the front matter"
+      },
+      {
+        "id": "stale-proposed",
+        "level": "warning",
+        "rule": "a record with the status proposed and a number n, when at least 3 records with a number greater than n have the status accepted or rejected"
+      },
+      {
+        "id": "superseded-link",
+        "level": "error",
+        "rule": "a record with the status superseded whose status holds neither a relative link to another record of the folder nor an ADR number (\"ADR-0005\", \"ADR 5\") of another record of the folder"
+      },
+      {
+        "id": "broken-link",
+        "level": "error",
+        "rule": "an inline link, an image or a link reference definition outside code whose destination is a relative path to a name in the folder, and no regular file of the folder has that name; links that leave the folder are never followed, and web addresses are never fetched"
+      },
+      {
+        "id": "duplicate-number",
+        "level": "error",
+        "rule": "two or more records whose file names give the same number (the digits after the prefix \"\", or at the start of the name)"
+      },
+      {
+        "id": "duplicate-title",
+        "level": "error",
+        "rule": "two or more records whose titles are the same once a leading \"ADR 9:\" or \"9.\" is left out, case is ignored and punctuation is read as a space"
+      },
+      {
+        "id": "numbering-gap",
+        "level": "notice",
+        "rule": "a run of whole numbers between the lowest and the highest record number that no record has"
+      },
+      {
+        "id": "file-name",
+        "level": "warning",
+        "rule": "a record whose file name does not follow NNNN-title-with-dashes.md: exactly 4 digits, the separator \"-\", words of lowercase letters a to z and digits joined by \"-\", and the extension .md"
+      }
+    ]
+  },
+  "totals": {
+    "records": 9,
+    "byLayout": {
+      "nygard": 8,
+      "madr": 0,
+      "none": 1
+    },
+    "byStatus": {
+      "proposed": 1,
+      "accepted": 5,
+      "rejected": 0,
+      "deprecated": 0,
+      "superseded": 1,
+      "draft": 0,
+      "other": 1,
+      "none": 1
+    },
+    "links": {
+      "checked": 2,
+      "broken": 1,
+      "notFollowed": 1,
+      "web": 0,
+      "anchors": 0
+    }
+  },
+  "records": [
+    {
+      "file": "examples/troubled/0001-record-architecture-decisions.md",
+      "number": 1,
+      "layout": "nygard",
+      "title": "1. Record architecture decisions",
+      "status": {
+        "word": "accepted",
+        "text": "Accepted",
+        "line": 5,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 7,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 12,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 17,
+              "text": "Consequences",
+              "state": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "examples/troubled/0002-use-a-message-queue-for-orders.md",
+      "number": 2,
+      "layout": "nygard",
+      "title": "2. Use a message queue for orders",
+      "status": {
+        "word": "proposed",
+        "text": "Proposed",
+        "line": 5,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 7,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 11,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 15,
+              "text": "Consequences",
+              "state": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "examples/troubled/0003-deploy-on-virtual-machines.md",
+      "number": 3,
+      "layout": "nygard",
+      "title": "3. Deploy on virtual machines",
+      "status": {
+        "word": "superseded",
+        "text": "Superseded",
+        "line": 5,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 7,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 11,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 15,
+              "text": "Consequences",
+              "state": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "examples/troubled/0004-cache-prices-in-memory.md",
+      "number": 4,
+      "layout": "nygard",
+      "title": "4. Cache prices in memory",
+      "status": {
+        "word": "approved",
+        "text": "Approved",
+        "line": 5,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 7,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 11,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "empty",
+          "headings": [
+            {
+              "line": 15,
+              "text": "Consequences",
+              "state": "placeholder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "examples/troubled/0005-cache-prices-in-memory.md",
+      "number": 5,
+      "layout": "nygard",
+      "title": "5. Cache prices in memory",
+      "status": {
+        "word": "accepted",
+        "text": "Accepted",
+        "line": 5,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 7,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 11,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 15,
+              "text": "Consequences",
+              "state": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "examples/troubled/0005-use-feature-flags.md",
+      "number": 5,
+      "layout": "nygard",
+      "title": "5. Use feature flags",
+      "status": {
+        "word": "accepted",
+        "text": "Accepted",
+        "line": 5,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 7,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 11,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 15,
+              "text": "Consequences",
+              "state": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "examples/troubled/0007-move-search-to-a-separate-service.md",
+      "number": 7,
+      "layout": "nygard",
+      "title": "7. Move search to a separate service",
+      "status": {
+        "word": "accepted",
+        "text": "Accepted",
+        "line": 5,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 7,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 12,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "missing",
+          "headings": []
+        }
+      ]
+    },
+    {
+      "file": "examples/troubled/0009-notes-from-the-planning-meeting.md",
+      "number": 9,
+      "layout": null,
+      "title": "Notes from the planning meeting",
+      "status": null,
+      "sections": []
+    },
+    {
+      "file": "examples/troubled/08-Rename-Customer-Tables.md",
+      "number": 8,
+      "layout": "nygard",
+      "title": null,
+      "status": {
+        "word": "accepted",
+        "text": "Accepted",
+        "line": 3,
+        "from": "the section \"Status\""
+      },
+      "sections": [
+        {
+          "id": "context",
+          "title": "Context",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 5,
+              "text": "Context",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "title": "Decision",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 9,
+              "text": "Decision",
+              "state": "body"
+            }
+          ]
+        },
+        {
+          "id": "consequences",
+          "title": "Consequences",
+          "level": "required",
+          "status": "found",
+          "headings": [
+            {
+              "line": 13,
+              "text": "Consequences",
+              "state": "body"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "file": "0003-deploy-on-virtual-machines.md",
+      "line": 5,
+      "column": 1,
+      "rule": "superseded-link",
+      "level": "error",
+      "found": "the record is superseded, but its status names no record that replaces it",
+      "why": [
+        "the status is read from the section \"Status\": \"Superseded\"",
+        "the status of a replaced record links to the record that replaces it, or names its number, such as ADR-0005"
+      ],
+      "at": "examples/troubled/0003-deploy-on-virtual-machines.md:5:1",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "If a later ADR changes or reverses a decision, it may be marked as \"deprecated\" or \"superseded\" with a reference to its replacement.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        },
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "If a decision is reversed, we will keep the old one around, but mark it as superseded.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        }
+      ],
+      "own": null
+    },
+    {
+      "file": "0004-cache-prices-in-memory.md",
+      "line": 5,
+      "column": 1,
+      "rule": "unknown-status",
+      "level": "error",
+      "found": "the status \"approved\" is not one of proposed, accepted, rejected, deprecated, superseded and draft",
+      "why": [
+        "the status is read from the section \"Status\": \"Approved\"",
+        "its first word is \"approved\""
+      ],
+      "at": "examples/troubled/0004-cache-prices-in-memory.md:5:1",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "A decision may be \"proposed\" if the project stakeholders haven't agreed with it yet, or \"accepted\" once it is agreed.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        },
+        {
+          "source": "madrTemplate",
+          "section": "These are optional metadata elements.",
+          "text": "status: \"{proposed | rejected | accepted | deprecated | ... | superseded by ADR-0123}\"",
+          "page": "https://raw.githubusercontent.com/adr/madr/develop/template/adr-template.md"
+        }
+      ],
+      "own": null
+    },
+    {
+      "rule": "duplicate-title",
+      "level": "error",
+      "file": "0005-cache-prices-in-memory.md",
+      "line": 1,
+      "column": 3,
+      "found": "the title \"5. Cache prices in memory\" is the title of 2 records: 0004-cache-prices-in-memory.md and 0005-cache-prices-in-memory.md",
+      "why": [
+        "titles are compared once a leading \"ADR 9:\" or \"9.\" is left out, case is ignored and punctuation is read as a space"
+      ],
+      "at": "examples/troubled/0005-cache-prices-in-memory.md:1:3",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "These documents have names that are short noun phrases.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        }
+      ],
+      "own": "two records with one title make a link or a mention by title ambiguous"
+    },
+    {
+      "rule": "duplicate-number",
+      "level": "error",
+      "file": "0005-use-feature-flags.md",
+      "line": null,
+      "column": null,
+      "found": "the number 5 is used by 2 records: 0005-cache-prices-in-memory.md and 0005-use-feature-flags.md",
+      "why": [
+        "the number of a record is read from its file name",
+        "a link or a mention by number such as ADR-0005 cannot tell these records apart"
+      ],
+      "at": "examples/troubled/0005-use-feature-flags.md",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "ADRs will be numbered sequentially and monotonically. Numbers will not be reused.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        },
+        {
+          "source": "madr",
+          "section": "Manual approach",
+          "text": "NNNN is a consecutive number and we assume that there won't be more than 9,999 ADRs in one repository.",
+          "page": "https://adr.github.io/madr/"
+        }
+      ],
+      "own": null
+    },
+    {
+      "file": "0007-move-search-to-a-separate-service.md",
+      "line": null,
+      "column": null,
+      "rule": "missing-section",
+      "level": "error",
+      "found": "required section Consequences of the Nygard layout is missing",
+      "why": [
+        "no heading matches one of its aliases: Consequences",
+        "the record is read as Nygard because 2 headings of it match sections of that layout",
+        "the layout has this section because of \"This section describes the resulting context, after applying the decision.\""
+      ],
+      "at": "examples/troubled/0007-move-search-to-a-separate-service.md",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "We will use a format with just a few parts, so each document is easy to digest.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        },
+        {
+          "source": "madr",
+          "section": "Markdown Architectural Decision Records",
+          "text": "MADR is a streamlined template for recording architectural significant decisions in a structured manner.",
+          "page": "https://adr.github.io/madr/"
+        }
+      ],
+      "own": null
+    },
+    {
+      "file": "0007-move-search-to-a-separate-service.md",
+      "line": 14,
+      "column": 96,
+      "rule": "broken-link",
+      "level": "error",
+      "found": "the link 0010-search-index.md points to 0010-search-index.md, which is not in the folder",
+      "why": [
+        "the destination is a relative path to a name in the folder examples/troubled",
+        "the folder was listed once; the link is resolved against that list, and nothing is opened"
+      ],
+      "at": "examples/troubled/0007-move-search-to-a-separate-service.md:14:96",
+      "basis": [
+        {
+          "source": "madrTemplate",
+          "section": "More Information",
+          "text": "Links to other decisions and resources might appear here as well.",
+          "page": "https://raw.githubusercontent.com/adr/madr/develop/template/adr-template.md"
+        },
+        {
+          "source": "commonmarkLinks",
+          "section": "6.3 Links",
+          "text": "An inline link consists of a link text followed immediately by a left parenthesis (, an optional link destination, an optional link title, and a right parenthesis ).",
+          "page": "https://spec.commonmark.org/0.31.2/#links"
+        }
+      ],
+      "own": null
+    },
+    {
+      "file": "0009-notes-from-the-planning-meeting.md",
+      "line": null,
+      "column": null,
+      "rule": "unknown-layout",
+      "level": "error",
+      "found": "no heading of the record matches a section of Nygard and MADR, so its sections are not checked",
+      "why": [
+        "the headings of the record are \"Notes from the planning meeting\", \"Attendees\" and \"Plan\"",
+        "a layout is chosen by the number of its sections that the headings match; here every layout matches none"
+      ],
+      "at": "examples/troubled/0009-notes-from-the-planning-meeting.md",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "We will use a format with just a few parts, so each document is easy to digest.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        },
+        {
+          "source": "madr",
+          "section": "Markdown Architectural Decision Records",
+          "text": "MADR is a streamlined template for recording architectural significant decisions in a structured manner.",
+          "page": "https://adr.github.io/madr/"
+        }
+      ],
+      "own": "a record must match at least one section of a layout before its sections can be checked"
+    },
+    {
+      "file": "08-Rename-Customer-Tables.md",
+      "line": 1,
+      "column": 4,
+      "rule": "missing-title",
+      "level": "error",
+      "found": "the record has no title: its first heading \"Status\" is a level 2 heading",
+      "why": [
+        "the title is the first heading of the record when it is a level 1 heading, or the title key of its front matter"
+      ],
+      "at": "examples/troubled/08-Rename-Customer-Tables.md:1:4",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "These documents have names that are short noun phrases.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        }
+      ],
+      "own": null
+    },
+    {
+      "rule": "stale-proposed",
+      "level": "warning",
+      "file": "0002-use-a-message-queue-for-orders.md",
+      "line": 5,
+      "column": 1,
+      "found": "the record is still proposed while 4 later records are accepted or rejected: 0005-cache-prices-in-memory.md, 0005-use-feature-flags.md, 0007-move-search-to-a-separate-service.md and 1 more",
+      "why": [
+        "its number is 2, and 4 records with a greater number have the status accepted or rejected",
+        "the limit is 3: the tool reads no date, so the place in the numbered sequence measures how long a decision has waited"
+      ],
+      "at": "examples/troubled/0002-use-a-message-queue-for-orders.md:5:1",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "A decision may be \"proposed\" if the project stakeholders haven't agreed with it yet, or \"accepted\" once it is agreed.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        },
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "ADRs will be numbered sequentially and monotonically. Numbers will not be reused.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        }
+      ],
+      "own": "the number of later decided records that makes a pending record stale is the tool's own; the tool reads no clock and no date, so the place of a record in the numbered sequence is the only measure of its age"
+    },
+    {
+      "file": "0004-cache-prices-in-memory.md",
+      "line": 15,
+      "column": 4,
+      "rule": "empty-section",
+      "level": "warning",
+      "found": "the heading \"Consequences\" holds nothing but TBD",
+      "why": [
+        "the heading matches the section Consequences of the Nygard layout",
+        "every piece of text under it is a placeholder once the placeholders are taken out"
+      ],
+      "at": "examples/troubled/0004-cache-prices-in-memory.md:15:4",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Context",
+          "text": "Documents that assist the team itself can have value, but only if they are kept up to date.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        }
+      ],
+      "own": "a heading with nothing under it says that a part of the record was never written"
+    },
+    {
+      "file": "0007-move-search-to-a-separate-service.md",
+      "line": 15,
+      "column": 21,
+      "rule": "placeholder",
+      "level": "warning",
+      "found": "placeholder TODO in \"Decision\": The rollout plan is TODO. The operations handbook of the company is in [the handbook](../....",
+      "why": [
+        "TODO is on the list of placeholders; the text around it is not written yet"
+      ],
+      "at": "examples/troubled/0007-move-search-to-a-separate-service.md:15:21",
+      "basis": [
+        {
+          "source": "madr",
+          "section": "Example",
+          "text": "The latest release of the full template (with placeholders and some guidance how to use) can be found at the releases page.",
+          "page": "https://adr.github.io/madr/"
+        }
+      ],
+      "own": "the list of placeholders is the tool's own"
+    },
+    {
+      "file": "08-Rename-Customer-Tables.md",
+      "line": null,
+      "column": null,
+      "rule": "file-name",
+      "level": "warning",
+      "found": "the file name 08-Rename-Customer-Tables.md does not follow NNNN-title-with-dashes.md: the number has 2 digits, not 4",
+      "why": [
+        "the spec of a file name is NNNN-title-with-dashes.md"
+      ],
+      "at": "examples/troubled/08-Rename-Customer-Tables.md",
+      "basis": [
+        {
+          "source": "madr",
+          "section": "Manual approach",
+          "text": "The filenames are following the pattern NNNN-title-with-dashes.md (ADR-0005), where",
+          "page": "https://adr.github.io/madr/"
+        },
+        {
+          "source": "madr",
+          "section": "Manual approach",
+          "text": "The title is stored using dashes and lowercase, because [adr-tools] also does that.",
+          "page": "https://adr.github.io/madr/"
+        }
+      ],
+      "own": null
+    },
+    {
+      "rule": "numbering-gap",
+      "level": "notice",
+      "file": null,
+      "line": null,
+      "column": null,
+      "found": "no record has the number 6, between 0005-cache-prices-in-memory.md and 0007-move-search-to-a-separate-service.md",
+      "why": [
+        "the numbers of the records run from 1 to 9",
+        "a missing number can be a record that was deleted, renamed or never added"
+      ],
+      "at": "examples/troubled",
+      "basis": [
+        {
+          "source": "nygard",
+          "section": "Decision",
+          "text": "ADRs will be numbered sequentially and monotonically. Numbers will not be reused.",
+          "page": "Documenting Architecture Decisions, by Michael Nygard, on the Cognitect blog at www.cognitect.com"
+        },
+        {
+          "source": "madr",
+          "section": "Manual approach",
+          "text": "Copy docs/decisions/adr-template.md to docs/decisions/NNNN-title-with-dashes.md, where NNNN indicates the next number in sequence.",
+          "page": "https://adr.github.io/madr/"
+        }
+      ],
+      "own": null
+    }
+  ],
+  "verdict": {
+    "pass": false,
+    "failOn": "warning",
+    "failing": 12,
+    "byLevel": {
+      "error": 8,
+      "warning": 4,
+      "notice": 1
+    },
+    "text": "FAIL - 12 findings at or above warning"
+  },
+  "notes": [
+    "1 link leaves the folder and was not followed: examples/troubled/0007-move-search-to-a-separate-service.md:15 ../../handbook/README.md",
+    "not read as records: README.md"
+  ],
+  "notice": "This report checks the structure of the records, their status, their numbers, their names and their links only. It does not judge whether a decision is right."
+}
