@@ -1,0 +1,15 @@
+# Changes
+
+## 1.0.0
+
+First release.
+
+- Checks a folder of architecture decision records written in Markdown, in Michael Nygard's format or in MADR, and reports what keeps the decision log from being read: missing and empty sections, placeholders, a missing or unknown status, records left proposed while later records were accepted, superseded records that do not name their replacement, relative links to files that are not in the folder, numbers and titles used twice, gaps in the numbers, and file names that do not follow the spec.
+- Fourteen rules: `missing-title`, `unknown-layout`, `missing-section`, `empty-section`, `placeholder`, `missing-status`, `unknown-status`, `stale-proposed`, `superseded-link`, `broken-link`, `duplicate-number`, `duplicate-title`, `numbering-gap` and `file-name`, each with a level of its own (`notice`, `warning`, `error` or `off`) and the sentences it rests on.
+- Two layouts, each with its sections, aliases and levels (`required`, `recommended`, `optional`, `off`): Nygard (Context, Decision, Consequences, with a required status) and MADR (Context and Problem Statement, Considered Options, Decision Outcome, with Consequences recommended and the other parts optional). The layout of each record is found from its headings by an exact rule, or set for every record in the configuration. Layouts and sections can be changed or added.
+- The status is read from the front matter, a Status section or a `Status:` line, and compared with configured status words. No clock and no date is read: a proposed record is stale when a configured number of records later in the numbered sequence were accepted.
+- Links are resolved as text against one listing of the folder. No link out of the folder is followed, no symbolic link is followed, no web address is fetched, and every spelling of `..` is caught. File names are checked against a simple spec (prefix, number of digits, separator, lowercase words, extension), never against a user pattern.
+- Reports as text, Markdown and JSON, each ending with the sentence that the report checks structure only. `--explain` shows the rule, the reasons, the quoted sentences and the tool's own choices behind each finding. Markdown cells are escaped and guarded against spreadsheet formulas. `--out` writes the report to a file and refuses the configuration or a path inside the folder of records. Exit code `0` when no finding is at or above the fail level, `1` when one is, `2` for a usage or input error, with no verdict.
+- A strict JSON reader for the configuration that refuses a repeated key, every unknown key an error with a suggestion, limits on the entries, the files, the lines, the nesting and the findings, and refusal of binary, UTF-16 and invalid UTF-8 input.
+- Every quoted sentence comes from Nygard's post, the MADR page and template, the home page of the adr organization, the CommonMark spec and RFC 8259, saved in `research/sources`; a test compares `src/data.js` and the documents with the saved text.
+- Release packages come with a CycloneDX SBOM, SHA-256 checksums and a build provenance attestation, after the SSDF gate of the repository.
