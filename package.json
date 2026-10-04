@@ -1,0 +1,50 @@
+{
+  "name": "adr-health-check",
+  "version": "1.0.0",
+  "description": "Checks the health of a folder of architecture decision records written in Markdown, in Michael Nygard's format or in MADR: missing and empty sections, placeholders, a status that is missing or not one of the status words, records left proposed while later records were accepted (measured by their place in the numbered sequence, not by a date), superseded records that do not name their replacement, relative links to files that are not in the folder, numbers and titles used twice, gaps in the numbers, and file names that do not follow a simple spec. Reads no clock, follows no link out of the folder and no symbolic link, fetches nothing, no dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "adr-health-check": "bin/adr-health-check.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "examples",
+    "research",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "test:coverage": "node --test --experimental-test-coverage \"test/*.test.js\"",
+    "check": "node tools/check.mjs",
+    "example": "node tools/example.mjs"
+  },
+  "keywords": [
+    "adr",
+    "architecture-decision-records",
+    "madr",
+    "nygard",
+    "architecture",
+    "documentation",
+    "markdown",
+    "linter",
+    "ci",
+    "cli"
+  ],
+  "author": "INNERLUXES <info@innerluxes.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/INNERLUXES/adr-health-check.git"
+  },
+  "homepage": "https://innerluxes.dev/software-development/consulting"
+}
